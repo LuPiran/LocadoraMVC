@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+	rel="stylesheet">
+<style>
+.logo-container {
+	background-color: #47bcff
+}
+
+.logo {
+	font-family: 'Handlee', cursive;
+	font-size: 2.5rem;
+	color: #FFF;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="logo-container mb-3 p-3 d-flex justify-content-between">
+		<span class="logo">Locadora</span> <span class="mt-3">Login</span>
+	</div>
+	<div class="container">
+		<div class="jumbotron mb-0">
+			<h1 class="display-4">Filmes</h1>
+		</div>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between mb-3">
+			<div class="navbar-nav">
+				<a href="" class="nav-item nav-link active">Filmes</a>
+			</div>
+			<a href="/form"><button
+					class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Novo</button></a>
+		</nav>
+		<div class="card mt-3" th:each="filme : ${filme}">
+			<div class="card-header" th:text="${filme.nomeFilme}">Nome do
+				filme:</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-8 mt-5">
+						<div class="row">
+							<!-- Valor -->
+							<div class="col-6">
+								Valor: <span th:text="${filme.valorFilme}">500</span>
+							</div>
+							<!-- Quantidade -->
+							<div class="col-6">
+								Quantidade: <span th:text="${filme.quantidade}">6</span>
+							</div>
+						</div>
+						<!-- Filme -->
+						<div class="mt-4">Filme</div>
+						<div>
+							<input th:value="${filme.urlFilme}" />
+						</div>
+						<!-- Descricao -->
+						<div class="mt-4">Descricao</div>
+						<div class="mb-5">
+							<textarea th:text="${filme.descricao}"></textarea>
+						</div>
+						<!-- Botao -->
+						<div class="mt-5">
+							<a th:href="@{form/{id}(id=${filme.id})}" class="btn btn-primary"
+								th:method="get">Editar</a> <a
+								th:href="@{delete/{id}(id=${filme.id})}" class="btn btn-danger"
+								th:method="delete">Deletar</a>
+						</div>
+					</div>
+					<div class="col-12 col-sm-4">
+						<!-- Imagem -->
+						<div>
+							<img th:src="${filme.urlImage}" scr="" class="img-thumbnail" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
